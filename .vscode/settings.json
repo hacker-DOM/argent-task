@@ -1,0 +1,10 @@
+{
+  // Javascript
+  "javascript.referencesCodeLens.enabled": true,
+  "javascript.validate.enable": false,
+  "javascript.suggest.autoImports": false,
+  // Eslint
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "eslint.run": "onSave",
+}
