@@ -95,7 +95,13 @@
       "allowTemplateLiterals": true
     }],
     "radix": "error",
-    "semi": ["error", "never"],
+    /* TODO: Uncomment when
+     * https://github.com/babel/babel-eslint/issues/814
+     * is fixed
+     */
+    // "semi": ["error", "never", {
+    //   "beforeStatementContinuationChars": "always"
+    // }],
     "space-before-blocks": ["error", "always"],
     "space-before-function-paren": ["error", {
       "anonymous": "always",
