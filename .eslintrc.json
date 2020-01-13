@@ -4,13 +4,10 @@
   },
   "parser": "babel-eslint",
   "plugins": ["react"],
-  // "parserOptions": {
-  //   "ecmaVersion": 2020,
-  //   "sourceType": "module",
-  //   "babelOptions": {
-  //     "configFile": "./.babelrc.js"
-  //   }
-  // },
+  "globals": {
+    "BASENAME": "readonly",
+    "NODE_ENV": "readonly"
+  },
   "rules": {
     "react/jsx-no-undef": [2, {
       "allowGlobals": true
@@ -108,7 +105,7 @@
       "named": "always",
       "asyncArrow": "always"
     }],
-    "func-call-spacing": ["error", "always", {
+    "func-call-spacing": ["warn", "always", {
       "allowNewlines": true
     }],
     "space-in-parens": ["error", "never"],
