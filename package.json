@@ -5,7 +5,7 @@
   "license": "ISC",
   "sideEffects": false,
   "scripts": {
-    "noob": "yarn && yarn start",
+    "start:noob": "yarn && yarn start",
     "build": "cross-env NODE_ENV=production webpack -p && cp build/index.html build/404.html",
     "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --open",
     "lint": "npx eslint src --max-warnings 0",
