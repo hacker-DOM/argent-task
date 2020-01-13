@@ -12,9 +12,9 @@ export default css`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 25rem;
+    width: 30rem;
     max-width: 100vw;
-    height: 30rem;
+    height: 40rem;
     max-height: 100vh;
     background-color: var(--fg, white);
   }
