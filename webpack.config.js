@@ -60,8 +60,8 @@ const develop = {
 const production = {
   mode: `production`,
   output: {
-    // publicPath: PRODUCTION_BASENAME,
-    publicPath: `/`,
+    publicPath: PRODUCTION_BASENAME,
+    // publicPath: `/`,
   },
   plugins: [
     new webpack.DefinePlugin ({
