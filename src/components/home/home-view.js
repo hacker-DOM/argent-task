@@ -2,7 +2,7 @@ import React from 'react'
 import * as R from 'ramda'
 import styled from 'styled-components'
 import * as H from 'common'
-import {Label, Input, Submit} from './home.sc'
+import css, {Form, Label, Input, Submit, H3, Value} from './home.sc'
 import useHook from './home-hook'
 import * as U from './utils'
 
@@ -14,46 +14,52 @@ const View = (props) => do {
     hook.setAddress (hook.inputRef.current.value)
     e.preventDefault ()
   }
-  <main {...{className}}>
-    <form {...{onSubmit}}>
-      <Label htmlFor='addressField'>
+  <main {...{className}} css={css}>
+    <Label htmlFor='addressField'>
         Enter your wallet address:
-      </Label>
+    </Label>
+    <Form {...{onSubmit}}>
       <Input
         id='addressField'
         ref={hook.inputRef}
         defaultValue={hook.address}
       />
       <Submit type='submit' value='>>>'/>
-    </form>
+    </Form>
     {H.isNotNilOrEmpty (hook.address) && <>
-      <h2>Wallet Balance</h2>
-      {R.isNil (resB.data)
-        ? resB.error
-          ? <h1>There was an error</h1>
-          : <h1>Loading...</h1>
-        : R.tryCatch (R.pipe (U.parseInfura, U.parseHex, U.parseB), (e) => (
-          <h1>{e.message}</h1>
-        )) (resB.data)
-      }
-      <h2>Number of guardians</h2>
-      {R.isNil (resG.data)
-        ? resG.error
-          ? <h1>There was an error</h1>
-          : <h1>Loading...</h1>
-        : R.tryCatch (R.pipe (U.parseInfura, U.parseHex), (e) => (
-          <h1>{e.message}</h1>
-        )) (resG.data)
-      }
-      <h2>ERC20 tokens</h2>
-      {R.isNil (resT.data)
-        ? resT.error
-          ? <h1>There was an error</h1>
-          : <h1>Loading...</h1>
-        : R.tryCatch (U.parseEthplorer, (e) => (
-          <h1>{e.message}</h1>
-        )) (resT.data)
-      }
+      <H3>Wallet Balance</H3>
+      <Value>
+        {R.isNil (resB.data)
+          ? resB.error
+            ? `There was an error`
+            : `Loading...`
+          : R.tryCatch (R.pipe (U.parseInfura, U.parseHex, U.parseB), (e) => (
+            e.message
+          )) (resB.data)
+        }
+      </Value>
+      <H3>Number of guardians</H3>
+      <Value>
+        {R.isNil (resG.data)
+          ? resG.error
+            ? `There was an error`
+            : `Loading...`
+          : R.tryCatch (R.pipe (U.parseInfura, U.parseHex), (e) => (
+            e.message
+          )) (resG.data)
+        }
+      </Value>
+      <H3>ERC20 tokens</H3>
+      <Value>
+        {R.isNil (resT.data)
+          ? resT.error
+            ? `There was an error`
+            : `Loading...`
+          : R.tryCatch (U.parseEthplorer, (e) => (
+            e.message
+          )) (resT.data)
+        }
+      </Value>
     </>}
   </main>
 }

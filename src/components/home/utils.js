@@ -21,7 +21,11 @@ parseHex = (hex) => (
 ),
 
 parseB = (balance) => (
-  (balance / 10 ** 18).toFixed (4)
+  `${(balance / 10 ** 18).toFixed (4)} ETH`
+),
+
+parseTokenB = (balance) => (
+  (balance / 10 ** 18).toFixed (2)
 ),
 
 parseEthplorer = (data) => {
@@ -32,7 +36,7 @@ parseEthplorer = (data) => {
   }
   return <Ul>
     {R.map (t => (
-      <li key={t}>Name: {t?.tokenInfo?.symbol}, Balance: {parseB (t?.balance)}</li>
+      <li key={t}>{t?.tokenInfo?.symbol} {parseTokenB (t?.balance)}</li>
     ), data.tokens)
     }
   </Ul>
