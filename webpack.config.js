@@ -1,12 +1,13 @@
-const R = require(`ramda`)
+/* global require __dirname process module */
+const R = require (`ramda`)
 const webpack = require (`webpack`)
-const CopyPlugin = require(`copy-webpack-plugin`)
-const HtmlWebPackPlugin = require(`html-webpack-plugin`)
-const ErrorOverlayPlugin = require(`error-overlay-webpack-plugin`)
-const path = require(`path`)
+const CopyPlugin = require (`copy-webpack-plugin`)
+const HtmlWebPackPlugin = require (`html-webpack-plugin`)
+const ErrorOverlayPlugin = require (`error-overlay-webpack-plugin`)
+const path = require (`path`)
 
-const rootPath = dir => path.resolve(__dirname, dir)
-
+const rootPath = dir => path.resolve (__dirname, dir)
+const NODE_ENV = process.env.NODE_ENV
 const PRODUCTION_BASENAME = `/argent-task`
 
 const common = {
@@ -22,17 +23,18 @@ const common = {
     path: rootPath (`build`),
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: rootPath(`public/index.html`)
+    new HtmlWebPackPlugin ({
+      template: rootPath (`public/index.html`)
     }),
-    new CopyPlugin([{
+    new CopyPlugin ([{
       from: rootPath (`public`)
     }]),
   ],
   resolve: {
     alias: {
       public: rootPath (`public`),
-      components: rootPath (`src/components`)
+      components: rootPath (`src/components`),
+      common: rootPath (`src/common`)
     }
   },
 }
@@ -47,9 +49,10 @@ const develop = {
     publicPath: `/`,
   },
   plugins: [
-    new ErrorOverlayPlugin(),
-    new webpack.DefinePlugin({
+    new ErrorOverlayPlugin (),
+    new webpack.DefinePlugin ({
       BASENAME: JSON.stringify (`/`),
+      NODE_ENV: JSON.stringify (NODE_ENV),
     }),
   ],
 }
@@ -58,22 +61,24 @@ const production = {
   mode: `production`,
   output: {
     publicPath: PRODUCTION_BASENAME,
+    // publicPath: `/`,
   },
   plugins: [
-    new webpack.DefinePlugin({
+    new webpack.DefinePlugin ({
       BASENAME: JSON.stringify (PRODUCTION_BASENAME),
+      NODE_ENV: JSON.stringify (NODE_ENV),
     }),
   ]
 }
 
 const makeConfigs = R.mergeDeepWith (R.concat, common)
 
-console.log (`Running webpack with process.env.NODE_ENV ${process.env.NODE_ENV}.`)
+console.log (`Running webpack with NODE_ENV: ${NODE_ENV}.`)
 
 const config = (
-  process.env.NODE_ENV === `production`
-    ? makeConfigs(production)
-    : makeConfigs(develop)
+  NODE_ENV === `production`
+    ? makeConfigs (production)
+    : makeConfigs (develop)
 )
 
 module.exports = config
