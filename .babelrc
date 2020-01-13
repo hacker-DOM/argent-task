@@ -10,5 +10,6 @@
     ["@babel/plugin-proposal-pipeline-operator", {
       "proposal": "smart"
     }],
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }
