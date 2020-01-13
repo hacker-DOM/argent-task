@@ -23,7 +23,7 @@ export default ({address}) => {
     params: [{to: toAddress, data: guardiansData}, `latest`]
   }})
   const configT = {
-    url: `http://api.ethplorer.io/getAddressInfo/${address}?apiKey=freekey`,
+    url: `https://api.ethplorer.io/getAddressInfo/${address}?apiKey=freekey`,
   }
   return {configB, configG, configT}
 }
