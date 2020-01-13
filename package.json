@@ -8,8 +8,13 @@
     "noob": "yarn && yarn start",
     "build": "cross-env NODE_ENV=production webpack -p && cp build/index.html build/404.html",
     "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --open",
-    "lint": "npx eslint src",
+    "lint": "npx eslint src --max-warnings 0",
     "deploy": "npm run build && gh-pages -d build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   },
   "dependencies": {
     "axios": "^0.19.1",
