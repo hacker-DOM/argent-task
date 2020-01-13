@@ -10,7 +10,7 @@ export default createGlobalStyle`
   }
 
   html {
-    font-size: 125%;
+    font-size: 100%;
   }
 
   body {
