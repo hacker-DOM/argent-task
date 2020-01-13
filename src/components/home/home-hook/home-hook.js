@@ -6,7 +6,7 @@ import * as H from 'common'
 import getConfig from './config'
 import mockApiInDev from './mock-api'
 
-export default () => do {
+export default () => {
   /* See https://github.com/pbeshai/use-query-params/issues/30 */
   const forceUpdate = H.useForceUpdate ()
   H.useMount (() => H.history.listen (forceUpdate))
@@ -23,10 +23,10 @@ export default () => do {
       })
   }, [address])
 
-  const ret = {
+  return {
+    address,
     inputRef,
-    address, setAddress,
     resB, resG, resT,
+    setAddress,
   }
-  ret
 }

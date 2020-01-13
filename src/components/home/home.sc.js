@@ -9,7 +9,7 @@ Input = styled.input`
   width: 80%;
 `,
 
-Button = styled.button`
+Submit = styled.input`
   width: 20%;
 `,
 

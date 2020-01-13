@@ -16,7 +16,7 @@ export default async () => {
       .reply (200, {result: `0x44444444444444444444`})
     mock.onAny (configG.url, configG.data)
       .reply (200, {result: `0x4`})
-    mock.onAny (configT.url)
+    mock.onAny (configT.url, configT.data)
       .reply (200, {tokens: [
         {tokenInfo: {symbol: `ABC`}, balance: 10 ** 18},
       ]})
