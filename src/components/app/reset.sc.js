@@ -10,13 +10,13 @@ export default createGlobalStyle`
   }
 
   html {
-    font-size: 62.5%;
+    font-size: 125%;
   }
 
   body {
     box-sizing: border-box;
     font-family: sans-serif;
-    font-weight: 300;
+    font-weight: 500;
   }
 }
 `
