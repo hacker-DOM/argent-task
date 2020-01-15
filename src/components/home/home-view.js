@@ -8,12 +8,11 @@ import * as U from './utils'
 
 const View = (props) => do {
   const {className} = props
-  const hook = useHook ()
-  const {resB, resG, resT} = hook;
+  const {resB, resG, resT, ...hook} = useHook ()
   const onSubmit = (e) => {
     hook.setAddress (hook.inputRef.current.value)
     e.preventDefault ()
-  }
+  };
   <main {...{className}} css={css}>
     <Label htmlFor='addressField'>
         Enter your wallet address:
