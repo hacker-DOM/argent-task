@@ -6,6 +6,6 @@ isNotNil = R.complement (R.isNil),
 
 isNotEmpty = R.complement (R.isEmpty),
 
-isNilOrEmpty = R.either (isNotNil, isNotEmpty),
+isNilOrEmpty = R.either (R.isNil, R.isEmpty),
 
 isNotNilOrEmpty = R.both (isNotNil, isNotEmpty)
